@@ -1,3 +1,6 @@
+import org.jetbrains.kotlin.builtins.StandardNames.FqNames.annotation
+
+//para conseguir desesrializar o obj
 buildscript {
     dependencies {
         classpath ("org.jetbrains.kotlin:kotlin-noarg:1.5.20")
@@ -10,9 +13,19 @@ plugins {
     id("org.jetbrains.kotlin.kapt") version "1.4.32"
     id("com.github.johnrengelman.shadow") version "7.0.0"
     id("io.micronaut.application") version "1.5.0"
+
+    //plugin para deixar as classes abertas
     id("org.jetbrains.kotlin.plugin.allopen") version "1.4.32"
+
+    //plugin para jpa
+
     id("org.jetbrains.kotlin.plugin.jpa") version "1.4.32"
 
+}
+
+//definir o caminhos das classes que serãoabertas
+allOpen{
+    annotation("io.micronault.http.annotation.Controller")
 }
 
 version = "0.1"
@@ -45,6 +58,7 @@ dependencies {
     runtimeOnly("ch.qos.logback:logback-classic")
     implementation("io.micronaut:micronaut-validation")
 
+    //jackson
     runtimeOnly("com.fasterxml.jackson.module:jackson-module-kotlin")
 
     //jpa

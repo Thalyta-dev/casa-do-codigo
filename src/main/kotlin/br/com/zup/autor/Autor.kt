@@ -1,9 +1,7 @@
 package br.com.zup.autor
 
-import javax.persistence.Entity
-import javax.persistence.GeneratedValue
-import javax.persistence.GenerationType
-import javax.persistence.Id
+import br.com.zup.endereco.Endereco
+import javax.persistence.*
 import javax.validation.constraints.Email
 import javax.validation.constraints.NotBlank
 import javax.validation.constraints.Size
@@ -17,4 +15,7 @@ class Autor(
     @field: Id  @field: GeneratedValue(strategy = GenerationType.IDENTITY) val id: Long = 0
 
 ) {
+
+    @ManyToOne(cascade = [CascadeType.ALL])
+    var endereco = Endereco()
 }
