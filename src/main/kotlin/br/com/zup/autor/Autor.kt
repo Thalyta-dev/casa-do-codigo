@@ -13,7 +13,7 @@ class Autor(
 
     @field: NotBlank val nome: String,
     @field: NotBlank @field:Email val email: String,
-    @field: NotBlank @field:Size(max = 400) val descricao: String,
+    @field: NotBlank @field:Size(max = 400) var descricao: String,
     @field: Id  @field: GeneratedValue(strategy = GenerationType.IDENTITY) val id: Long = 0
 
 ) {
