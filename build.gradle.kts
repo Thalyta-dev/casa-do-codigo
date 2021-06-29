@@ -12,7 +12,7 @@ plugins {
     id("org.jetbrains.kotlin.jvm") version "1.4.32"
     id("org.jetbrains.kotlin.kapt") version "1.4.32"
     id("com.github.johnrengelman.shadow") version "7.0.0"
-    id("io.micronaut.application") version "1.5.0"
+    id("io.micronaut.application") version "2.0.1"
 
     //plugin para deixar as classes abertas
     id("org.jetbrains.kotlin.plugin.allopen") version "1.4.32"
@@ -31,7 +31,7 @@ allOpen{
 version = "0.1"
 group = "br.com.zup"
 
-val kotlinVersion=project.properties.get("kotlinVersion")
+val kotlinVersion= project.properties["kotlinVersion"]
 repositories {
     mavenCentral()
 }
@@ -49,6 +49,7 @@ dependencies {
     kapt("io.micronaut.data:micronaut-data-processor")
     implementation("io.micronaut:micronaut-http-client")
     implementation("io.micronaut:micronaut-runtime")
+    implementation("io.micronaut.beanvalidation:micronaut-hibernate-validator")
     implementation("io.micronaut.data:micronaut-data-hibernate-jpa")
     implementation("io.micronaut.kotlin:micronaut-kotlin-runtime")
     implementation("io.micronaut.sql:micronaut-jdbc-hikari")
@@ -57,9 +58,17 @@ dependencies {
     implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8:${kotlinVersion}")
     runtimeOnly("ch.qos.logback:logback-classic")
     implementation("io.micronaut:micronaut-validation")
+    implementation("io.micronaut.xml:micronaut-jackson-xml")
+    runtimeOnly("com.fasterxml.jackson.module:jackson-module-kotlin:2.3.0")
+
+
+    implementation("org.apache.maven.doxia:doxia-module-xhtml:1.10")
+
+
 
     //jackson
     runtimeOnly("com.fasterxml.jackson.module:jackson-module-kotlin")
+
 
     //jpa
     implementation("mysql:mysql-connector-java:8.0.15")
