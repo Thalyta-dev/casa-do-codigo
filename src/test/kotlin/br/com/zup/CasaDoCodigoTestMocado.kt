@@ -55,6 +55,16 @@ class CasaDoCodigoTestMocado {
 
     }
 
+    @AfterEach
+    internal fun saida() {
+
+        autorRequest = AutorRequest(
+            "Thalyta princesa", "thalytalindademais@gmail.com",
+            "A thalyta é o ser humano mais inteigente e lindo"
+        )
+
+
+    }
 
 
 
@@ -78,7 +88,7 @@ class CasaDoCodigoTestMocado {
         val cep = object {
             val cep = cepRequerido
         }
-        val request = HttpRequest.POST("/autores/${autorSalvo.id}/endereco", cep)
+        val request = HttpRequest.POST("/autores/5/endereco", cep)
 
         val response = client.toBlocking().exchange(request, Any::class.java)
 
