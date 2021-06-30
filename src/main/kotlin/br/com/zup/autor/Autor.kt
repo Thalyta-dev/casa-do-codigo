@@ -12,10 +12,11 @@ class Autor(
     @field: NotBlank val nome: String,
     @field: NotBlank @field:Email val email: String,
     @field: NotBlank @field:Size(max = 400) var descricao: String,
-    @field: Id  @field: GeneratedValue(strategy = GenerationType.IDENTITY) val id: Long = 0
+    @field: Id @field: GeneratedValue(strategy = GenerationType.IDENTITY) val id: Long = 0,
+    @ManyToOne(cascade = [CascadeType.ALL])
+    var endereco: Endereco = Endereco()
 
 ) {
 
-    @ManyToOne(cascade = [CascadeType.ALL])
-    var endereco = Endereco()
+
 }

@@ -51,6 +51,7 @@ dependencies {
     implementation("io.micronaut:micronaut-runtime")
     implementation("io.micronaut.beanvalidation:micronaut-hibernate-validator")
     implementation("io.micronaut.data:micronaut-data-hibernate-jpa")
+    implementation("io.micronaut.data:micronaut-data-jdbc")
     implementation("io.micronaut.kotlin:micronaut-kotlin-runtime")
     implementation("io.micronaut.sql:micronaut-jdbc-hikari")
     implementation("javax.annotation:javax.annotation-api")
@@ -59,12 +60,8 @@ dependencies {
     runtimeOnly("ch.qos.logback:logback-classic")
     implementation("io.micronaut:micronaut-validation")
     implementation("io.micronaut.xml:micronaut-jackson-xml")
+    annotationProcessor("io.micronaut:micronaut-validation")
     runtimeOnly("com.fasterxml.jackson.module:jackson-module-kotlin:2.3.0")
-
-
-    implementation("org.apache.maven.doxia:doxia-module-xhtml:1.10")
-
-
 
     //jackson
     runtimeOnly("com.fasterxml.jackson.module:jackson-module-kotlin")
@@ -72,7 +69,19 @@ dependencies {
 
     //jpa
     implementation("mysql:mysql-connector-java:8.0.15")
-    runtime("io.micronaut.sql:micronaut-jdbc-hikari")
+    compile("io.micronaut.sql:micronaut-jdbc-hikari")
+
+    testAnnotationProcessor("io.micronaut:micronaut-inject-java")
+    testImplementation("io.micronaut:micronaut-http-client")
+    testImplementation("org.junit.jupiter:junit-jupiter-api")
+    testImplementation("org.mockito:mockito-core:3.8.0")
+    testImplementation("io.micronaut.test:micronaut-test-junit5:2.3.2")
+    testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:5.7.0")
+    testImplementation("com.h2database:h2")
+
+
+
+
 
 
 }

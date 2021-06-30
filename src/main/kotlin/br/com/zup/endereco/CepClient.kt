@@ -10,7 +10,6 @@ import io.micronaut.http.client.annotation.Client
 @Client("https://viacep.com.br/ws")
 interface CepClient {
 
-    @Get("/{cep}/xml/")
-    @Consumes(MediaType.APPLICATION_XHTML)
+    @Get("/{cep}/json/")
     fun recebeCep(@PathVariable cep: String ): EnderecoClient
 }

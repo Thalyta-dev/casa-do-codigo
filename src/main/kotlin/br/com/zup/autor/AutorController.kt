@@ -4,6 +4,7 @@ import io.micronaut.http.HttpResponse
 import io.micronaut.http.annotation.*
 import io.micronaut.http.uri.UriBuilder
 import io.micronaut.validation.Validated
+import javax.transaction.Transactional
 import javax.validation.Valid
 
 @Validated
@@ -13,6 +14,7 @@ class AutorController(
 ) {
 
     @Post
+    @Transactional
     fun cadastra(@Body @Valid request: AutorRequest): HttpResponse<Any> {
 
         val toAutor = request.toAutor().let { autor -> autorRespository.save(autor) }
@@ -35,7 +37,7 @@ class AutorController(
 
         if (autorEmail.isEmpty) return HttpResponse.notFound()
 
-        return HttpResponse.ok(autorEmail)
+        return HttpResponse.ok(DetalhesAutorResponse(autorEmail.get()))
 
 
     }

@@ -5,6 +5,7 @@ import io.micronaut.http.HttpResponse
 import io.micronaut.http.annotation.Controller
 import io.micronaut.http.annotation.PathVariable
 import io.micronaut.http.annotation.Post
+import io.micronaut.http.uri.UriBuilder
 import io.micronaut.validation.Validated
 import javax.transaction.Transactional
 
@@ -30,7 +31,8 @@ class EnderecoController(
         val endereco = EnderecoRequest(consultaCepClient.recebeCep(cep))
         autor.endereco = endereco.toModel()
 
-        return HttpResponse.ok()
+        val uri = UriBuilder.of("autores/{id}/endereco").expand(mutableMapOf(Pair("id", autor.id)))
+        return HttpResponse.created(uri)
 
     }
 }
